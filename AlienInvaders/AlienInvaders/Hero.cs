@@ -24,4 +24,13 @@ namespace AlienInvaders
             this.powerUpLevel = 2;
 
         }
+        	public void Move(int move,int[,] grid)
+        {
+            this.RemoveFromGrid(grid);
+            if (move == 1) { y -=1; }
+            if (move == -1) { y += 1; }
+            if (move == 2) { x -=1; }
+            if (move == -2) { x+=1; }
+            this.PlaceInGrid(grid);
+        }
 }
