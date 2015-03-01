@@ -14,4 +14,14 @@ namespace AlienInvaders
         public int powerUpLevel;
         public int missileSpeed;
     }
+    
+            public Hero()
+        {
+            this.x = 20;
+            this.y = 20;
+            this.lives = 2;
+            this.score = 0;
+            this.powerUpLevel = 2;
+
+        }
 }
