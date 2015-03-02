@@ -15,7 +15,7 @@ namespace AlienInvaders
         public int missileSpeed;
     }
     
-            public Hero()
+        public Hero()
         {
             this.x = 20;
             this.y = 20;
