@@ -33,4 +33,33 @@ namespace AlienInvaders
             if (move == -2) { x+=1; }
             this.PlaceInGrid(grid);
         }
+        
+        public void LevelUp() 
+        {
+            if(powerUpLevel<=1)
+            { 
+                powerUpLevel++;
+            }
+        }
+
+        public void LifeUp()
+        {
+            lives++;
+        }
+
+        public void SpeedUp()
+        {
+            missileSpeed++;
+        }
+
+
+        public void PlaceInGrid(int[,] grid)
+        {
+            grid[x, y] = 10;
+        }
+
+        public void RemoveFromGrid(int[,] grid)
+        {
+            grid[x, y] = 0;
+        }
 }
