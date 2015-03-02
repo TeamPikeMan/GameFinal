@@ -63,4 +63,40 @@ namespace AlienInvaders
         {
             grid[x, y] = 0;
         }
+        
+        public Projectile Fire(int i)
+        {
+            return new Projectile(x-1, y, -1, i);
+        }
+
+        public void Hit(List<Projectile> j, int[,] grid)
+        {
+            if (j.Exists(o => o.x==this.x && o.y==this.y && o.direction==1))
+            {
+                lives--;
+                int index= j.FindIndex(o => o.x==this.x && o.y==this.y && o.direction==1);
+                j[index].RemoveFromGrid(grid);
+                j.RemoveAt(index);
+                if (GameBody.player.lives >= 1 )
+                {
+                    Thread hit = new Thread(HeroHisSound);
+                    hit.Start();
+                }
+
+                bool sound = true;
+                if (GameBody.player.lives == 1)
+                {
+                    Thread lowBlood = new Thread(HeroLowLiveSound);
+                    if (sound == true)
+                    {
+                        lowBlood.Start();
+                        sound = false;
+                    }
+                }
+                if (GameBody.player.lives > 1)
+                {
+                    sound = true;
+                }
+            }
+        }
 }
