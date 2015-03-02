@@ -99,4 +99,35 @@ namespace AlienInvaders
                 }
             }
         }
+        
+        static void HeroLowLiveSound()
+        {
+            int i = 741;
+            
+            while (GameBody.player.lives == 1 )
+            {
+                if (GameBody.player.lives == 0)
+                {
+                    break;
+                }
+                Thread.Sleep(i);
+                if (i > 120)
+                {
+                    Console.Beep(1000, 120);
+                    Console.Beep(1000, 100);
+                    i -= 50;
+                        
+                }
+                else
+                {
+                    Console.Beep(2000, 120);
+                    Console.Beep(2000, 120);
+                }
+            }
+        }
+
+        static void HeroHisSound()
+        {
+            Console.Beep(300, 100);
+        }
 }
