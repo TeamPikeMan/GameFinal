@@ -15,7 +15,7 @@ namespace AlienInvaders
         public int missileSpeed;
     }
     
-            public Hero()
+        public Hero()
         {
             this.x = 20;
             this.y = 20;
@@ -24,7 +24,8 @@ namespace AlienInvaders
             this.powerUpLevel = 2;
 
         }
-        	public void Move(int move,int[,] grid)
+        
+        public void Move(int move,int[,] grid)
         {
             this.RemoveFromGrid(grid);
             if (move == 1) { y -=1; }
@@ -32,5 +33,101 @@ namespace AlienInvaders
             if (move == 2) { x -=1; }
             if (move == -2) { x+=1; }
             this.PlaceInGrid(grid);
+        }
+        
+        public void LevelUp() 
+        {
+            if(powerUpLevel<=1)
+            { 
+                powerUpLevel++;
+            }
+        }
+
+        public void LifeUp()
+        {
+            lives++;
+        }
+
+        public void SpeedUp()
+        {
+            missileSpeed++;
+        }
+
+
+        public void PlaceInGrid(int[,] grid)
+        {
+            grid[x, y] = 10;
+        }
+
+        public void RemoveFromGrid(int[,] grid)
+        {
+            grid[x, y] = 0;
+        }
+        
+        public Projectile Fire(int i)
+        {
+            return new Projectile(x-1, y, -1, i);
+        }
+
+        public void Hit(List<Projectile> j, int[,] grid)
+        {
+            if (j.Exists(o => o.x==this.x && o.y==this.y && o.direction==1))
+            {
+                lives--;
+                int index= j.FindIndex(o => o.x==this.x && o.y==this.y && o.direction==1);
+                j[index].RemoveFromGrid(grid);
+                j.RemoveAt(index);
+                if (GameBody.player.lives >= 1 )
+                {
+                    Thread hit = new Thread(HeroHisSound);
+                    hit.Start();
+                }
+
+                bool sound = true;
+                if (GameBody.player.lives == 1)
+                {
+                    Thread lowBlood = new Thread(HeroLowLiveSound);
+                    if (sound == true)
+                    {
+                        lowBlood.Start();
+                        sound = false;
+                    }
+                }
+                if (GameBody.player.lives > 1)
+                {
+                    sound = true;
+                }
+            }
+        }
+        
+        static void HeroLowLiveSound()
+        {
+            int i = 741;
+            
+            while (GameBody.player.lives == 1 )
+            {
+                if (GameBody.player.lives == 0)
+                {
+                    break;
+                }
+                Thread.Sleep(i);
+                if (i > 120)
+                {
+                    Console.Beep(1000, 120);
+                    Console.Beep(1000, 100);
+                    i -= 50;
+                        
+                }
+                else
+                {
+                    Console.Beep(2000, 120);
+                    Console.Beep(2000, 120);
+                }
+            }
+        }
+
+        static void HeroHisSound()
+        {
+            Console.Beep(300, 100);
         }
 }
