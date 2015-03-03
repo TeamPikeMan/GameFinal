@@ -79,17 +79,7 @@ namespace AlienInvaders
         //===============================================================================================> LOSE SCREEN
         static public void LoseScreen(int h, int w)
         {
-            //Console.Clear();
-            //string frame = new String('=', 20);
-            //Console.SetCursorPosition(h, h / 3);
-            //Console.WriteLine(frame);
-            //Console.SetCursorPosition(h, h / 3 + 1);
-            //Console.WriteLine("Game Over".ToString().PadLeft(h / 2));
-            //Console.SetCursorPosition(h, h / 3 + 3);
-            //Console.WriteLine("You lose!".ToString().PadLeft(h / 2));
-            //Console.SetCursorPosition(h, h / 3 + 4);
-            //Console.WriteLine(frame);
-            //Console.SetCursorPosition(h, h / 3 + 8);
+            
 
             Console.WindowHeight = 35;
             Console.BufferHeight = 35;
@@ -142,6 +132,7 @@ namespace AlienInvaders
                     break;
                 }
             }
+            HighScore(player);
         }
         //===============================================================================================> LOSE SCREEN
 
@@ -217,7 +208,11 @@ namespace AlienInvaders
                     ConsoleKeyInfo userInput = Console.ReadKey();
                     break;
                 }
+
+                HighScore(player);
             }
+
+
         }
     }
 }
