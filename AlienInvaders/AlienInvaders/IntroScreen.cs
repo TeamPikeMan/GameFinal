@@ -25,13 +25,13 @@ namespace AlienInvaders
             Console.WriteLine(" After huge casting and thousnds of volunteers you have been choosen to\n take part in this suicide mission...");
             Console.WriteLine(" You are the last hope of the planet PESHO... so try not to die before\n the Invaders");
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("\n\n                 Team \"Pikeman\" presents ");
-            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\n                 Team \"Pikeman\" presents ");
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\n                      Space Invaders ");
             Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine("\n Press any key to begin the battle... ");
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("\n\n Powered by Pavel Pavlov /argidux/\n ");
+            Console.WriteLine("\n Powered by Pavel Pavlov /argidux/\n ");
 
             ConsoleKeyInfo userInput = Console.ReadKey();
             Console.Clear();
