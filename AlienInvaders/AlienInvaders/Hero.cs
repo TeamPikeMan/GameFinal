@@ -130,4 +130,21 @@ namespace AlienInvaders
         {
             Console.Beep(300, 100);
         }
+        
+        public void Print(int bx, int by)
+        {
+            Console.SetCursorPosition(y + bx, x + by);
+            if (lives >= 3) { Console.ForegroundColor = ConsoleColor.Green; }
+            if (lives == 2) { Console.ForegroundColor = ConsoleColor.Yellow; }
+            if (lives == 1) 
+            { 
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                //Alien newAl = new Alien(0, 0, 0, 0);
+                //Alien.AlienHitSound();
+            }
+            Console.Write(((char)9650).ToString());
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.SetCursorPosition(bx, x + by);
+        }
 }
