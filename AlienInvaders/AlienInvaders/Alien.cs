@@ -83,7 +83,7 @@ namespace AlienInvaders
         }
         
         
-                static void AlienHitSound()
+        static void AlienHitSound()
         {
             if (true)
             {
