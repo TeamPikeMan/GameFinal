@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 
-namespace GameVersion1
+namespace AlienInvaders
 {
     partial class GameBody
     {
