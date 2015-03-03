@@ -63,5 +63,14 @@ namespace GameVersion1
 
             }
         }
+
+        public void MoveTimeProgress(int[,] grid)
+        {
+            Random rng = new Random();
+            this.RemoveFromGrid(grid);
+            this.x += direction;
+            this.y += secondDirection * rng.Next(0, 1);
+            this.PlaceInGrid(grid);
+        }
     }
 }
