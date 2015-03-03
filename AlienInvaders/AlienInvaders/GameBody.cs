@@ -33,6 +33,7 @@ namespace AlienInvaders
         static public int levelNumber = 1;
         static void Main(string[] args)
         {
+            IntroScreen.PrintIntroScreen();
             int h = 29;
             int w = 80;
             int tbBorder = 4;

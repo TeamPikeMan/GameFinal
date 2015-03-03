@@ -45,6 +45,7 @@
     <Compile Include="EndGame.cs" />
     <Compile Include="GameBody.cs" />
     <Compile Include="Hero.cs" />
+    <Compile Include="IntroScreen.cs" />
     <Compile Include="Print.cs" />
     <Compile Include="Projectile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
