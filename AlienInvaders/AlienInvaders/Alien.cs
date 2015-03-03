@@ -71,8 +71,6 @@ namespace AlienInvaders
 
                 }
 
-
-
                 Thread hitAlien = new Thread(AlienHitSound);
                 if (GameBody.player.lives > 1)
                 {
@@ -80,9 +78,35 @@ namespace AlienInvaders
                     hitAlien.Abort();
                 }
 
-
             }
             return null;
+        }
+        
+        
+                static void AlienHitSound()
+        {
+            if (true)
+            {
+                Console.Beep(400, 100);
+            } 
+        }
+
+        public Projectile Fire()
+        {
+            if (this.reloadTime == this.reloadTimer)
+            {
+                return new Projectile(x+1,y, 1);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public void ProgressTime()
+        {
+            if (this.reloadTime > this.reloadTimer) { this.reloadTime = 0; }
+            this.reloadTime++;
         }
     }
 }
