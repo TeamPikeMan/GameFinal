@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AlienInvaders
+namespace GameVersion1
 {
     class Projectile
     {
@@ -31,7 +31,7 @@ namespace AlienInvaders
 
 
         }
-        
+
         public void PlaceInGrid(int[,] grid)
         {
             if (grid[x, y] == 0)
@@ -50,7 +50,8 @@ namespace AlienInvaders
                 grid[x, y] = 0;
             }
         }
- public void TimeProgress(int[,] grid)
+
+        public void TimeProgress(int[,] grid)
         {
             this.RemoveFromGrid(grid);
 
@@ -64,4 +65,3 @@ namespace AlienInvaders
         }
     }
 }
-
