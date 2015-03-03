@@ -253,11 +253,11 @@ namespace AlienInvaders
             if (Console.KeyAvailable)
             {
                 ConsoleKeyInfo userInput = Console.ReadKey();
-                if (userInput.Key == ConsoleKey.LeftArrow && h.y >= 5)
+                if (userInput.Key == ConsoleKey.LeftArrow && h.y >= 1)
                 {
                     h.Move(1, grid);
                 }
-                if (userInput.Key == ConsoleKey.RightArrow && h.y <= grid.GetLength(1) - 3)
+                if (userInput.Key == ConsoleKey.RightArrow && h.y <= grid.GetLength(1) - 2)
                 {
                     h.Move(-1, grid);
                 }
