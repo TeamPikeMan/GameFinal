@@ -1,0 +1,72 @@
+
+Team name = "Pikeman"
+
+Name of the project - "Alien Invaders"
+
+List of team members, who took part in the final version of the game: 
+
+- Pavel Pavlov /argidux/
+- Ivo Paunov /ivo.paunov/
+- Yavor Komitov /ykomitov/
+- Borislava Jordanova /BorislavaJ/
+- Adrian Ivanov /Andrian_Ivanov/
+- Peruna Keremidchieva /peruna/
+
+List of team members, who helped in the preparation stage of the game: 
+
+- Todor Voinov /todor.voinov/
+
+
+! Vasil Petrov /vvpetrov/ - didn't take part 
+
+
+
+
+
+General Overview:
+
+The console game draws inspiration from classic Alien Invader style games. The covers most major features of this style of games. The game provides a choices of levels and an ability to both chose a starting level and play until you have reached the last level. The game records the top 10scores. There is a dynamic live and score counter. Upgrades of different affects have been added as well. Hero stats are carried between levels. There is a reasonable amount of visual and audio feedback. User input is handled with try/catch blocks, and do/while cycles to ensure proper input. 
+	Classes and structures have been use for each object implemented in the game. All objects that appear in screen have similar methods for placement and printing. Hit detection for objects has been implemented in a similar manner across all objects. Win and Lose screens have been added to provide the game with a somewhat more complete look. 
+
+General design:
+	2d matrix has been used to save the location of each object on the playing field. List have been used to record repeating objects like aliens, upgrades or projectiles. Time progression consist of either change in location or change in an internal state. Printing has been done using string builders and then printing line by line the resulting string. High Scores are being recorded in a txt file which is updated after the end of every game. Level configurations are being loaded from txt files again. Console.bleep and Thread.Sleep have been used to create audio feedback in the game. Border, tutorial and player score and lives are printed separately from playing screen. 
+
+Hero class:
+	Position information, lives, score and power level are the variables of the class
+	Default constructor only  placing the hero in the middle of the field and giving it 3 lives and lowest power level
+	PlaceInGrid and RemoveFromGrid methods that take the 2d matrix take care of changing the location of the hero
+	Move method to change hero objects location in the grid, makes a use of PlaceIngrid and RemoveFromGrid methods
+	Fire method that returns a projectile object going upwards. 
+	HitDetect methods that compare player’s location with all downward going projjectiles
+
+
+Alien Class:
+	Position information, lives, reload timer, reload period are the variables of the class.
+	PlaceInGrid and RemoveFromGrid methods that take the 2d matrix take care of changing the location
+	Time Progress that takes care of reloading
+	Fire method that returns a projectile object going downwards. 
+
+Projectile class
+	Location information, direction x, direction y
+	PlaceInGrid and RemoveFromGrid methods that take the 2d matrix take care of changing the location
+	Time Progression moves the object in the direction it has.
+
+HighScore struct:
+	Name and score
+	Used in reading and writing high scores to txt file. 
+
+Menu:
+	Allows for High Score display, changing starting level, and starting the game.
+	Selection of option is done with the arrow keys and the highlighted line is the currently selected options.
+	Menu is self-consistent and only ends when the game is either stared or exit is chosen. 
+
+General Flow of the Program Logic:
+	Setup of console and List for different object types.
+	Menu started.
+	Game Started:
+		Each turn consist of printing, checking for fire, hero movement, removing objects out of range or ones that are destroyed. 
+	Game End:
+		Either lives reach zero, or last available level is cleared.
+		Win or Lose Screen
+		High Score Entry: only recorded if in top 10:
+			Download last available list, add the new entry, sort and delete the last entry if there are 11
