@@ -22,5 +22,21 @@ namespace GameVersion1
             secondDirection = sd;
             type = t;
         }
+        public void PlaceInGrid(int[,] grid)
+        {
+            if (grid[x, y] == 0)
+            {
+                grid[x, y] = 5;
+            }
+
+        }
+
+        public void RemoveFromGrid(int[,] grid)
+        {
+            if (grid[x, y] == 5)
+            {
+                grid[x, y] = 0;
+            }
+        }
     }
 }
