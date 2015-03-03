@@ -100,7 +100,9 @@ namespace AlienInvaders
 
         static public void RunGame(List<Alien> swarm, List<Projectile> missles, List<Upgrade> upgrades, Random rng, int[,] matrix, int b)
         {
-            string[] txtFile = System.IO.File.ReadAllLines("Level2.txt");
+            RUNN:
+            string l = "Level" + levelNumber.ToString() + ".txt";
+            string[] txtFile = System.IO.File.ReadAllLines(l);
             for (int i = 0; i < txtFile.Length; i++)
             {
                 string[] temp = txtFile[i].Split(',');
@@ -127,9 +129,17 @@ namespace AlienInvaders
                 }
                 if (swarm.Count == 0)
                 {//win
-                    Console.Clear();
-                    WinScreenNinja();
-                    break;
+                    levelNumber++;
+                    if (levelNumber <= 4)
+                    {
+                        goto RUNN;
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        WinScreenNinja();
+                        break;
+                    }
                 }
             }
 
