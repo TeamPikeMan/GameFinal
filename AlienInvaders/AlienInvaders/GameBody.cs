@@ -89,9 +89,8 @@ namespace AlienInvaders
                             Console.WriteLine("Chose starting level 1-4");
                             levelNumber = int.Parse(Console.ReadLine());
                         }
-                        while (levelNumber>0 && levelNumber<5);
+                        while (!(levelNumber > 0 && levelNumber < 5));
                     }
-
                     catch (FormatException)
                     {
                         Console.WriteLine("Inavlid number");
@@ -253,11 +252,11 @@ namespace AlienInvaders
             if (Console.KeyAvailable)
             {
                 ConsoleKeyInfo userInput = Console.ReadKey();
-                if (userInput.Key == ConsoleKey.LeftArrow && h.y >= 1)
+                if (userInput.Key == ConsoleKey.LeftArrow && h.y >= 2)
                 {
                     h.Move(1, grid);
                 }
-                if (userInput.Key == ConsoleKey.RightArrow && h.y <= grid.GetLength(1) - 2)
+                if (userInput.Key == ConsoleKey.RightArrow && h.y <= grid.GetLength(1) - 3)
                 {
                     h.Move(-1, grid);
                 }

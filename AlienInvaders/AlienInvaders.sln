@@ -5,6 +5,14 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlienInvaders", "AlienInvaders\AlienInvaders.csproj", "{68010F75-CEF5-4EAF-8358-C47906F65E7B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0705F42A-A62A-4630-9B2F-DAF8D9348C1F}"
+	ProjectSection(SolutionItems) = preProject
+		AlienInvaders\bin\Debug\Level1.txt = AlienInvaders\bin\Debug\Level1.txt
+		AlienInvaders\bin\Debug\Level2.txt = AlienInvaders\bin\Debug\Level2.txt
+		AlienInvaders\bin\Debug\Level3.txt = AlienInvaders\bin\Debug\Level3.txt
+		AlienInvaders\bin\Debug\Level4.txt = AlienInvaders\bin\Debug\Level4.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

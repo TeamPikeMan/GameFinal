@@ -44,8 +44,8 @@ class Levels
     // Level 4
     static void FillLevelFour(int[,] matrix)
     {
-        int start = 0;
-        int end = matrix.GetLength(1);
+        int start = 1;
+        int end = matrix.GetLength(1) - 1;
         for (int i = 0; i < 9; i++)
         {
             for (int j = start; j < end; j++)
@@ -79,8 +79,8 @@ class Levels
     // Level 3
     static void FillLevelThree()
     {
-        int start = 0;
-        int end = matrix.GetLength(1);
+        int start = 1;
+        int end = matrix.GetLength(1) - 1;
         for (int i = 0; i < 6; i++)
         {
             for (int j = start; j < end; j++)
@@ -157,7 +157,7 @@ class Levels
     {
         for (int i = 0; i < 3; i++)
         {
-            for (int j = 0; j < matrix.GetLength(1) - 1; j++)
+            for (int j = 1; j < matrix.GetLength(1) - 1; j++)
             {
                 if (j % 5 != 0 && i == 2)
                 {
@@ -182,7 +182,7 @@ class Levels
     {
         for (int i = 0; i < matrix.GetLength(0); i++)
         {
-            for (int j = 0; j < matrix.GetLength(1); j++)
+            for (int j = 1; j < matrix.GetLength(1) - 1; j++)
             {
                 matrix[i, j] = 0;
             }
