@@ -38,5 +38,30 @@ namespace GameVersion1
                 grid[x, y] = 0;
             }
         }
+
+        public void HeroCatch(Hero hero, int[,] grid)
+        {
+            if (this.x == hero.x && this.y == hero.y)
+            {
+                switch (type)
+                {
+                    case 1:
+                        hero.LifeUp();
+                        break;
+                    case 2:
+                        hero.LevelUp();
+                        break;
+                    case 3:
+                        hero.score += 100;
+                        break;
+                    default:
+                        break;
+
+                }
+                this.RemoveFromGrid(grid);
+                type = 5;
+
+            }
+        }
     }
 }
