@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 
-namespace GameVersion1
+namespace AlienInvaders
 {
     partial class GameBody
     {
@@ -227,6 +227,103 @@ namespace GameVersion1
                 return 0;
             }
         }
+                static public void HeroMove(Hero h, int[,] grid, List<Projectile> p)
+        {
+            if (Console.KeyAvailable)
+            {
+                ConsoleKeyInfo userInput = Console.ReadKey();
+                if (userInput.Key == ConsoleKey.LeftArrow && h.y >= 5)
+                {
+                    h.Move(1, grid);
+                }
+                if (userInput.Key == ConsoleKey.RightArrow && h.y <= grid.GetLength(1) - 3)
+                {
+                    h.Move(-1, grid);
+                }
+                if (userInput.Key == ConsoleKey.UpArrow && h.x >= 10)
+                {
+                    h.Move(2, grid);
+                }
+                if (userInput.Key == ConsoleKey.DownArrow && h.x < grid.GetLength(0) - 1)
+                {
+                    h.Move(-2, grid);
+                }
 
+                if (userInput.Key == ConsoleKey.Z )
+                {
+                    h.lives++;
+                }
+                if (userInput.Key == ConsoleKey.Spacebar)
+                {
+
+                    switch (h.powerUpLevel)
+                    {
+                        case 0:
+                            p.Add(h.Fire(0));
+                            Thread fireSound = new Thread(HeroProjSoundZero);
+                            if (player.lives > 1)
+                            {
+                                fireSound.Start();
+                            }
+                            break;
+                        case 1:
+                            p.Add(h.Fire(0));
+                            p.Add(h.Fire(-1));
+                             Thread fireSound1 = new Thread(HeroProjSoundOne);
+                            if (player.lives > 1)
+                            {
+                                fireSound1.Start();
+                            }
+                            break;
+                        case 2:
+                            p.Add(h.Fire(0));
+                            p.Add(h.Fire(-1));
+                            p.Add(h.Fire(1));
+                             Thread fireSound2 = new Thread(HeroProjSoundTwo);
+                            if (player.lives > 1)
+                            {
+                                fireSound2.Start();
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+
+                }
+            }
+
+            while (Console.KeyAvailable)
+            {
+                ConsoleKeyInfo userInput = Console.ReadKey();
+            }
+        }
+
+
+        static public void PrintMenu(int s, string[] menu, int w)
+        {
+            Console.Clear(); //refresh screen
+            var total = w; //should be console width in final version
+            Console.CursorVisible = false;
+            for (int i = 0; i < menu.Length; i++) //printing cycle
+            {
+                int n = menu[i].Length % 2 == 0 ? 1 : 0; //take care of even lenght situation
+                if (i == s) //set color for the selected option
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow; //set color
+                    Console.WriteLine((">  " + menu[i]).PadLeft(((total - menu[i].Length) / 2)
+                                            + menu[i].Length - n)
+                                   .PadRight(total));  //centering text
+                    Console.ForegroundColor = ConsoleColor.White;//reset color
+                }
+                else
+                {
+                    Console.WriteLine(menu[i].PadLeft(((total - menu[i].Length) / 2)
+                                            + menu[i].Length - n)
+                                   .PadRight(total));
+                }
+
+            }
+            // Console.WriteLine(s);
+        }
        
     }

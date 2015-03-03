@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameVersion1
+namespace AlienInvaders
 {
     class Projectile
     {
@@ -31,3 +31,23 @@ namespace GameVersion1
 
 
         }
+        
+        public void PlaceInGrid(int[,] grid)
+        {
+            if (grid[x, y] == 0)
+            {
+                if (direction == 1)
+                    grid[x, y] = 2;
+                else
+                    grid[x, y] = 3;
+            }
+        }
+
+        public void RemoveFromGrid(int[,] grid)
+        {
+            if (grid[x, y] == 2 || grid[x, y] == 3)
+            {
+                grid[x, y] = 0;
+            }
+        }
+
