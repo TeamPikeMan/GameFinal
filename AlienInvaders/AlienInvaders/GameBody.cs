@@ -29,6 +29,8 @@ namespace AlienInvaders
                 return name + "-" + points.ToString() + "-" + date.ToString();
             }
         }
+
+        static public int levelNumber = 1;
         static void Main(string[] args)
         {
             int h = 29;
@@ -36,7 +38,7 @@ namespace AlienInvaders
             int tbBorder = 4;
             ConsoleSetUp(w, h);
             DrawBackGround(h, w);
-            
+
             List<Alien> swarm = new List<Alien>();
             List<Projectile> missles = new List<Projectile>();
             List<Upgrade> upgrades = new List<Upgrade>();
@@ -51,7 +53,7 @@ namespace AlienInvaders
 
             while (true)
             {
-                
+
                 ConsoleKeyInfo userInput = Console.ReadKey();
                 if (userInput.Key == ConsoleKey.UpArrow && select >= 1)
                 {
@@ -129,7 +131,7 @@ namespace AlienInvaders
                     WinScreenNinja();
                     break;
                 }
-              }
+            }
 
             //Console.Clear();
             //Console.WriteLine("Game Over");
@@ -150,12 +152,12 @@ namespace AlienInvaders
                 upgrades.Add(ship.Hit_Detect(p, grid, h));
                 p.Add(ship.Fire());
                 p.RemoveAll(o => o == null);
-                ship.ProgressTime();                
+                ship.ProgressTime();
             }
 
             s.RemoveAll(o => o.lives <= 0);
             upgrades.RemoveAll(o => o == null);
-            
+
             foreach (Upgrade alien in upgrades)
             {
                 alien.PlaceInGrid(grid);
@@ -164,7 +166,7 @@ namespace AlienInvaders
             }
 
             upgrades.RemoveAll(o => o.type == 5);
-            
+
             foreach (Upgrade alien in upgrades)
             {
                 if (alien.x == grid.GetLength(0) - 1 || alien.x == 0)
@@ -186,7 +188,7 @@ namespace AlienInvaders
 
             foreach (Projectile missle in p)
             {
-                if (missle.x == grid.GetLength(0) - 1 || missle.x == missle.speed-1)
+                if (missle.x == grid.GetLength(0) - 1 || missle.x == missle.speed - 1)
                 {
                     missle.RemoveFromGrid(grid);
                 }
@@ -212,7 +214,7 @@ namespace AlienInvaders
 
             HeroMove(h, grid, p);
             h.Hit(p, grid);
-            if(s.Count<=2)
+            if (s.Count <= 2)
             {
                 int j = 0;
             }
@@ -227,7 +229,7 @@ namespace AlienInvaders
                 return 0;
             }
         }
-                static public void HeroMove(Hero h, int[,] grid, List<Projectile> p)
+        static public void HeroMove(Hero h, int[,] grid, List<Projectile> p)
         {
             if (Console.KeyAvailable)
             {
@@ -249,7 +251,7 @@ namespace AlienInvaders
                     h.Move(-2, grid);
                 }
 
-                if (userInput.Key == ConsoleKey.Z )
+                if (userInput.Key == ConsoleKey.Z)
                 {
                     h.lives++;
                 }
@@ -269,7 +271,7 @@ namespace AlienInvaders
                         case 1:
                             p.Add(h.Fire(0));
                             p.Add(h.Fire(-1));
-                             Thread fireSound1 = new Thread(HeroProjSoundOne);
+                            Thread fireSound1 = new Thread(HeroProjSoundOne);
                             if (player.lives > 1)
                             {
                                 fireSound1.Start();
@@ -279,7 +281,7 @@ namespace AlienInvaders
                             p.Add(h.Fire(0));
                             p.Add(h.Fire(-1));
                             p.Add(h.Fire(1));
-                             Thread fireSound2 = new Thread(HeroProjSoundTwo);
+                            Thread fireSound2 = new Thread(HeroProjSoundTwo);
                             if (player.lives > 1)
                             {
                                 fireSound2.Start();
@@ -325,5 +327,6 @@ namespace AlienInvaders
             }
             // Console.WriteLine(s);
         }
-       
+
     }
+}

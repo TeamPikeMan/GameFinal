@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 
 namespace AlienInvaders
 {
@@ -13,7 +15,7 @@ namespace AlienInvaders
         public int score;
         public int powerUpLevel;
         public int missileSpeed;
-    }
+
         //hero's properties in the beginning of the game
         public Hero()
         {
@@ -25,20 +27,20 @@ namespace AlienInvaders
 
         }
         //move the hero on the console
-        public void Move(int move,int[,] grid)
+        public void Move(int move, int[,] grid)
         {
             this.RemoveFromGrid(grid);
-            if (move == 1) { y -=1; }
+            if (move == 1) { y -= 1; }
             if (move == -1) { y += 1; }
-            if (move == 2) { x -=1; }
-            if (move == -2) { x+=1; }
+            if (move == 2) { x -= 1; }
+            if (move == -2) { x += 1; }
             this.PlaceInGrid(grid);
         }
         //when a bonus is caught upgrades the firing power of the hero
-        public void LevelUp() 
+        public void LevelUp()
         {
-            if(powerUpLevel<=1)
-            { 
+            if (powerUpLevel <= 1)
+            {
                 powerUpLevel++;
             }
         }
@@ -64,18 +66,18 @@ namespace AlienInvaders
         //create a projectile when hero fires
         public Projectile Fire(int i)
         {
-            return new Projectile(x-1, y, -1, i);
+            return new Projectile(x - 1, y, -1, i);
         }
         //when the hero is hit remove lives, changes sounds
         public void Hit(List<Projectile> j, int[,] grid)
         {
-            if (j.Exists(o => o.x==this.x && o.y==this.y && o.direction==1))
+            if (j.Exists(o => o.x == this.x && o.y == this.y && o.direction == 1))
             {
                 lives--;
-                int index= j.FindIndex(o => o.x==this.x && o.y==this.y && o.direction==1);
+                int index = j.FindIndex(o => o.x == this.x && o.y == this.y && o.direction == 1);
                 j[index].RemoveFromGrid(grid);
                 j.RemoveAt(index);
-                if (GameBody.player.lives >= 1 )
+                if (GameBody.player.lives >= 1)
                 {
                     Thread hit = new Thread(HeroHisSound);
                     hit.Start();
@@ -101,8 +103,8 @@ namespace AlienInvaders
         static void HeroLowLiveSound()
         {
             int i = 741;
-            
-            while (GameBody.player.lives == 1 )
+
+            while (GameBody.player.lives == 1)
             {
                 if (GameBody.player.lives == 0)
                 {
@@ -114,7 +116,7 @@ namespace AlienInvaders
                     Console.Beep(1000, 120);
                     Console.Beep(1000, 100);
                     i -= 50;
-                        
+
                 }
                 else
                 {
@@ -134,8 +136,8 @@ namespace AlienInvaders
             Console.SetCursorPosition(y + bx, x + by);
             if (lives >= 3) { Console.ForegroundColor = ConsoleColor.Green; }
             if (lives == 2) { Console.ForegroundColor = ConsoleColor.Yellow; }
-            if (lives == 1) 
-            { 
+            if (lives == 1)
+            {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
             }
             Console.Write(((char)9650).ToString());
@@ -143,4 +145,5 @@ namespace AlienInvaders
             Console.ForegroundColor = ConsoleColor.White;
             Console.SetCursorPosition(bx, x + by);
         }
+    }
 }
