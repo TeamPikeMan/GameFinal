@@ -13,12 +13,17 @@ namespace AlienInvaders
         {
             try
             {
-                Console.Write("Input your Name:  ");
-                string playerName = Console.ReadLine();
-                if (playerName.IndexOf('-') >= 0)
+                string playerName="";
+                do
                 {
-                    throw new FormatException("Invalid Name! Do not use '-");
+                    Console.Write("Input your Name:  ");
+                    playerName = Console.ReadLine();
+                    if (playerName.IndexOf('-') >= 0)
+                    {
+                        throw new FormatException("Invalid Name! Do not use '-");
+                    }
                 }
+                while (playerName.Length < 3);
 
                 Score current = new Score(playerName, player.score, DateTime.Now);
 
