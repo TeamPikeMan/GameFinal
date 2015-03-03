@@ -27,7 +27,7 @@ namespace AlienInvaders
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("\n                 Team \"Pikeman\" presents ");
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\n                      Space Invaders ");
+            Console.WriteLine("\n                      Alien Invaders ");
             Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine("\n Press any key to begin the battle... ");
             Console.ForegroundColor = ConsoleColor.DarkYellow;
