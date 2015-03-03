@@ -21,7 +21,7 @@ namespace AlienInvaders
             this.y = 20;
             this.lives = 2;
             this.score = 0;
-            this.powerUpLevel = 2;
+            this.powerUpLevel = 0;
 
         }
         //move the hero on the console
