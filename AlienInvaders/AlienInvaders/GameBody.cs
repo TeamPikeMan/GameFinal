@@ -82,7 +82,21 @@ namespace AlienInvaders
                     break;
                 case 1:
                     Console.Clear();
-                    Console.WriteLine("Remains to be implemented");
+                    try
+                    {
+                        do
+                        {
+                            Console.WriteLine("Chose starting level 1-4");
+                            levelNumber = int.Parse(Console.ReadLine());
+                        }
+                        while (levelNumber>0 && levelNumber<5);
+                    }
+
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Inavlid number");
+                        Console.ReadLine();
+                    }
 
                     Console.ReadLine();
                     goto Selection;
@@ -143,11 +157,6 @@ namespace AlienInvaders
                 }
             }
 
-            //Console.Clear();
-            //Console.WriteLine("Game Over");
-            //Console.WriteLine(player.score);
-
-            //HighScore(player);
         }
 
         static public int GameTurn(List<Alien> s, List<Projectile> p, List<Upgrade> upgrades, Hero h, int[,] grid, int b)

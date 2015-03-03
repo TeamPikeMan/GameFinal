@@ -11,42 +11,56 @@ namespace AlienInvaders
     {
         static public void HighScore(Hero player)
         {
-            Console.Write("Input your Name:  ");
-            string playerName = Console.ReadLine();
-            Score current = new Score(playerName, player.score, DateTime.Now);
-
-            string[] scores = System.IO.File.ReadAllLines("HighScore.txt");
-
-            List<Score> tempScore = new List<Score>();
-
-            for (int i = 0; i < scores.Length; i++)
+            try
             {
-                string[] temp = scores[i].Split('-');
-                if (temp != null)
+                Console.Write("Input your Name:  ");
+                string playerName = Console.ReadLine();
+                if (playerName.IndexOf('-') >= 0)
                 {
-                    tempScore.Add(new Score(temp[0], int.Parse(temp[1]), DateTime.Parse(temp[2])));
+                    throw new FormatException("Invalid Name! Do not use '-");
                 }
+
+                Score current = new Score(playerName, player.score, DateTime.Now);
+
+                string[] scores = System.IO.File.ReadAllLines("HighScore.txt");
+
+                List<Score> tempScore = new List<Score>();
+
+                for (int i = 0; i < scores.Length; i++)
+                {
+                    string[] temp = scores[i].Split('-');
+                    if (temp != null)
+                    {
+                        tempScore.Add(new Score(temp[0], int.Parse(temp[1]), DateTime.Parse(temp[2])));
+                    }
+                }
+
+
+                tempScore.Add(current);
+
+                tempScore.Sort((x1, x2) => x1.points.CompareTo(x2.points));
+
+                if (tempScore.Count == 11)
+                {
+                    tempScore.RemoveAt(10);
+                }
+                Console.Clear();
+                List<string> output = new List<string>();
+
+                foreach (var item in tempScore)
+                {
+                    output.Add(item.ToString());
+                    Console.WriteLine(item.ToString());
+                }
+
+                System.IO.File.WriteAllLines("HighScore.txt", output.ToArray());
             }
 
-
-            tempScore.Add(current);
-
-            tempScore.Sort((x1, x2) => x1.points.CompareTo(x2.points));
-
-            if (tempScore.Count == 11)
+            catch (FormatException ex)
             {
-                tempScore.RemoveAt(10);
-            }
-            Console.Clear();
-            List<string> output = new List<string>();
-
-            foreach (var item in tempScore)
-            {
-                output.Add(item.ToString());
-                Console.WriteLine(item.ToString());
+                Console.WriteLine(ex.Message);
             }
 
-            System.IO.File.WriteAllLines("HighScore.txt", output.ToArray());
         }
 
         static public void PrintHighScore()
