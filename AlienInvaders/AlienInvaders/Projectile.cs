@@ -50,4 +50,18 @@ namespace AlienInvaders
                 grid[x, y] = 0;
             }
         }
+ public void TimeProgress(int[,] grid)
+        {
+            this.RemoveFromGrid(grid);
+
+          
+                x = this.x + this.direction;
+
+                y = this.y + this.direction2; 
+            
+   
+            this.PlaceInGrid(grid);
+        }
+    }
+}
 
